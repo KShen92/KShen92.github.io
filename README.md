@@ -23,4 +23,4 @@ Below are a few of my contributions to the project, as well as my contact detail
 ## Contact
 kshen92@gmail.com <br>
 [Github](https://github.com/KShen92) <br>
-[LinkedIn](www.linkedin.com/in/kenneth-shen-4b1728b4)
+[LinkedIn](https://www.linkedin.com/in/kenneth-shen-4b1728b4)
