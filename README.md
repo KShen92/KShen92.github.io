@@ -6,19 +6,76 @@ To close out my time at the Tech Academy, I participated in a two week sprint de
 Below are a few of my contributions to the project, as well as my contact details.
 
 ### Front End
-* [Story](#link-link)
-* [Story](#link-link)
+* [Format and ActionLinks](#format-and-actionlinks)
 ### Back End
-* [Story](#link-link)
+* [Seed Method Update](#seed-method-update)
 ### Full Stack
 * [Index Revision](#index-revision)
 ### Contact Links
 * [Contact](#contact)
 
 ## Front End
+### Format and ActionLinks
+One of our view pages featured a series of misaligned cards that required formatting and actionlinks implemented for each card. I added the matchHeight javascript plugin to the project and functions to streamline the size and height of each card's inner and outer borders. I also added ActionLinks, referencing unique GUIDs for each card, to direct users to an Edit or Delete view page for each given card.
+
+      @model IEnumerable<JobPlacementDashboard.Models.JPBulletin>
+
+      @{
+          ViewBag.Title = "Job Bulletins";
+      }
+
+      @*While using Bootstrap 3, we're unable to use card styling. To change styling, please
+          update Site.css.*@
+
+      <h2>Bulletins</h2>
+      <body>
+          <div class="row">
+              @foreach (var item in Model)
+              {
+                  <div class="card col-md-3 mb-4 bulletin-container match-height">
+                      <div class="card">
+                          <p>Category: @Html.DisplayFor(modelItem => item.Bulletin_category)</p>
+                          <p>Posted on: @item.Bulletin_date.ToShortDateString()</p>
+                          <div class="bulletin-body match-height-2">
+                              <p>@Html.DisplayFor(modelItem => item.Bulletin_body)</p>
+                              <p>@Html.ActionLink("Edit", "Edit", new { id = item.Bulletin_id })</p>
+                              <p>@Html.ActionLink("Delete", "Delete", new { id = item.Bulletin_id })</p>
+                          </div>
+                      </div>
+                  </div>
+              }
+          </div>
+      </body>
+
+      <script type="text/javascript" src="~/Scripts/jquery-3.3.1.min.js"></script>
+      <script type="text/javascript" src="~/Scripts/jquery.matchHeight-min.js"></script>
+      <script type="text/javascript">
+          $(function () {
+              var array = $(".match-height");
+              var height = 0;
+              for (i = 0; i < array.length; i++) {
+                  if ($(array[i]).height() > height) {
+                      height = $(array[i]).height();
+                  }
+              }
+              $(array).height(height);
+          })
+
+          $(function () {
+              var array = $(".match-height-2");
+              var height = 0;
+              for (i = 0; i < array.length; i++) {
+                  if ($(array[i]).height() > height) {
+                      height = $(array[i]).height();
+                  }
+              }
+              $(array).height(height);
+          })
+      </script>
 
 ## Back End
-
+### Seed Method Update
+The live project program used a seeding method to populate a database with multiple tables of sample data for a number of test users. My task was to update the method and populate data columns for any tables that had been omitted from the current iteration of the method. I identified existing code blocks throughout the method that could be quickly renamed and reused to make quick and efficient additions to all required tables with minimum redundancy.
 ## Full Stack
 ### Index Revision
 My task was to revise an existing Index page from pulling and displaying the entirety of a SQL table's data for each system user, including user GUIDs meant to be kept hidden, to displaying select table data relevant to the Index page for each user, including the user's login name pulled from an adjacent database table.
